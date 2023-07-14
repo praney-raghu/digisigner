@@ -26,7 +26,7 @@ class DigiSignerController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.digisigner.com/v1/documents",
+            CURLOPT_URL => config('app.digisigner_api_url')."documents",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -34,7 +34,7 @@ class DigiSignerController extends Controller
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_FAILONERROR => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_USERPWD => "db07f1a7-b45c-4f5c-a8c4-cfb3f6d0b7e5:db07f1a7-b45c-4f5c-a8c4-cfb3f6d0b7e5",
+            CURLOPT_USERPWD => config('app.digisigner_api_key').":".config('app.digisigner_api_key'),
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array('file' => new \CURLFILE($file->getRealPath(), $file->getClientMimeType(), $file->getClientOriginalName())),
             CURLOPT_HTTPHEADER => array(
@@ -94,7 +94,7 @@ class DigiSignerController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.digisigner.com/v1/signature_requests',
+            CURLOPT_URL => config('app.digisigner_api_url').'signature_requests',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -102,7 +102,7 @@ class DigiSignerController extends Controller
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_FAILONERROR => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_USERPWD => "db07f1a7-b45c-4f5c-a8c4-cfb3f6d0b7e5:db07f1a7-b45c-4f5c-a8c4-cfb3f6d0b7e5",
+            CURLOPT_USERPWD => config('app.digisigner_api_key').":".config('app.digisigner_api_key'),
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => $body,
             CURLOPT_HTTPHEADER => array(
